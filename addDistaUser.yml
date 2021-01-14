@@ -10,6 +10,6 @@
       comment: Dista account
       generate_ssh_key: yes
       groups: sudo,video,audio,ssh
-      name: dista
+      name: dista-dev
       shell: /bin/bash
       ssh_key_bits: 4096
