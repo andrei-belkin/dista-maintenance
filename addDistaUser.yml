@@ -9,7 +9,7 @@
       append: yes
       comment: Dista account
       generate_ssh_key: yes
-      groups: admin,sudo,video,audio,storage,wheel,ssh
+      groups: sudo,video,audio,storage,wheel,ssh
       name: dista
       shell: /bin/bash
       ssh_key_bits: 4096
