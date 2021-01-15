@@ -21,11 +21,10 @@ echo
 echo "# ======= INSTALLING BASIC PACKAGES ========"
 echo "# |  vim                                   |"
 echo "# |  nano                                  |"
-echo "# |  git                                   |"
 echo "# |  ansible                               |"
 echo "# =========================================="
 echo
-sudo apt install -y vim nano git ansible
+sudo apt install -y vim nano ansible
 echo
 echo "# ======== BASIC PACKAGES INSTALLED ========"
 echo
@@ -53,7 +52,6 @@ echo "# |  4. Installed basic necessary          |"
 echo "# |     packages (apt install) :           |"
 echo "# |                                        |"
 echo "# |   - ansible                            |"
-echo "# |   - git                                |"
 echo "# |   - nano                               |"
 echo "# |   - vim                                |"
 echo "# |                                        |"
