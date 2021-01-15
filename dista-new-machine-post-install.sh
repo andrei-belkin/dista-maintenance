@@ -30,7 +30,7 @@ echo "# ======== BASIC PACKAGES INSTALLED ========"
 echo
 echo "# ====== RUNNING DISTA ANSIBLE CONFIG ======"
 echo
-ansible-pull -U https://github.com/andrei-belkin/dista-maintenance.git addDistaUser.yml
+ansible-playbook addDistaUser.yml
 echo
 echo "# ====== FINISHED DISTA ANSIBLE CONFIG ====="
 echo
