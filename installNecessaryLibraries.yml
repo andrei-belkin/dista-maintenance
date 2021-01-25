@@ -54,10 +54,10 @@
       dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
       mode: "755"
 
-  - name: Installing Cuda (10.2)
-    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.89_440.33.01_linux.run"
-    args:
-      executable: /bin/sh
+#  - name: Installing Cuda (10.2)
+#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.89_440.33.01_linux.run"
+#    args:
+#      executable: /bin/sh
 
   - name: Downloading Cuda patch (1)
     ansible.builtin.get_url:
@@ -65,10 +65,10 @@
       dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
       mode: "755"
 
-  - name: Installing Cuda patch (1)
-    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.1_linux.run"
-    args:
-      executable: /bin/sh
+#  - name: Installing Cuda patch (1)
+#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.1_linux.run"
+#    args:
+#      executable: /bin/sh
 
   - name: Downloading Cuda patch (2)
     ansible.builtin.get_url:
@@ -76,10 +76,10 @@
       dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
       mode: "755"
 
-  - name: Installing Cuda patch (2)
-    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.2_linux.run"
-    args:
-      executable: /bin/sh
+#  - name: Installing Cuda patch (2)
+#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.2_linux.run"
+#    args:
+#      executable: /bin/sh
 
   - name: Installing PyTorch (latest stable, pip, Python, Cuda (10.2))
     ansible.builtin.pip:
@@ -109,12 +109,12 @@
       src: https://github.com/opencv/opencv_contrib/archive/master.zip
       dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
-  - name: Make OpenCV
-    community.general.make:
-      chdir: "{{ansible_env.HOME}}/.dista/libraries/bin/opencv"
-      target: all
-      params:
-        OPENCV_EXTRA_MODULES_PATH: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
+#  - name: Make OpenCV
+#    community.general.make:
+#      chdir: "{{ansible_env.HOME}}/.dista/libraries/bin/opencv"
+#      target: all
+#      params:
+#        OPENCV_EXTRA_MODULES_PATH: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
   - name: Make hidden .dista/libraries/bin/zed
     ansible.builtin.file:
@@ -127,7 +127,7 @@
       dest: "{{ansible_env.HOME}}/.dista/libraries/bin/zed"
       mode: "755"
 
-  - name: Installing StereoLabs ZED SDK (Cuda 10.2)
-    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/zed/ZED_SDK_Ubuntu18_cuda10.2_v3.4.0.run"
-    args:
-      executable: /bin/sh
+#  - name: Installing StereoLabs ZED SDK (Cuda 10.2)
+#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/zed/ZED_SDK_Ubuntu18_cuda10.2_v3.4.0.run"
+#    args:
+#      executable: /bin/sh
