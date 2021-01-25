@@ -35,7 +35,7 @@ ansible-galaxy collection install community.general
 echo
 echo "# ====== RUNNING DISTA ANSIBLE CONFIG ======"
 echo
-ansible-playbook -v installNecessaryLibraries.yml
+ansible-playbook -vvv installNecessaryLibraries.yml
 echo
 echo "# =========== SUMMARY OF CHANGES ==========="
 echo "# |  WARNING: Some steps may have been     |"
