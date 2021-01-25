@@ -100,13 +100,23 @@
       state: directory
 
   - name: Downloading OpenCV (base)
+    ansible.builtin.get_url:
+      url: https://github.com/opencv/opencv/archive/master.zip
+      dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
+
+  - name: Extracting OpenCV (base)
     ansible.builtin.unarchive:
-      src: https://github.com/opencv/opencv/archive/master.zip
+      src: "{{ansible_env.HOME}}/.dista/libraries/src/opencv/opencv-master.zip"
       dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
   - name: Downloading OpenCV (contrib)
+    ansible.builtin.get_url:
+      url: https://github.com/opencv/opencv_contrib/archive/master.zip
+      dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
+
+  - name: Extracting OpenCV (contrib)
     ansible.builtin.unarchive:
-      src: https://github.com/opencv/opencv_contrib/archive/master.zip
+      src: "{{ansible_env.HOME}}/.dista/libraries/src/opencv/opencv_contrib-master.zip"
       dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
 #  - name: Make OpenCV
