@@ -4,13 +4,9 @@ echo "# ========== FETCHING ALL UPDATES =========="
 echo
 sudo apt update
 echo
-echo "# ============= UPDATES FETCHED ============"
-echo
 echo "# =========== INSTALLING UPDATES ==========="
 echo
 sudo apt dist-upgrade -y
-echo
-echo "# ============ UPDATES INSTALLED ==========="
 echo
 echo "# ====== AUTOCLEANING THE UPDATE CACHE ====="
 echo
@@ -19,8 +15,6 @@ echo
 echo "# ==== AUTOREMOVING UNNECESSARY PACKAGES ==="
 echo
 sudo apt autoremove -y
-echo
-echo "# ====== UNNECESSARY PACKAGES REMOVED ======"
 echo
 echo "# ======= INSTALLING BASIC PACKAGES ========"
 echo "# |  ansible                               |"
@@ -33,15 +27,15 @@ echo "# =========================================="
 echo
 sudo apt install -y ansible aptitude nano python3 python3-apt vim
 echo
-echo "# ======== BASIC PACKAGES INSTALLED ========"
+echo "# ======= INSTALLING ANSIBLE MODULES ======="
+echo "# |  community.general                     |"
+echo "# =========================================="
+echo
+ansible-galaxy collection install community.general
 echo
 echo "# ====== RUNNING DISTA ANSIBLE CONFIG ======"
 echo
 ansible-playbook -v installNecessaryLibraries.yml
-echo
-echo "# ====== FINISHED DISTA ANSIBLE CONFIG ====="
-echo
-echo
 echo
 echo "# =========== SUMMARY OF CHANGES ==========="
 echo "# |  WARNING: Some steps may have been     |"
