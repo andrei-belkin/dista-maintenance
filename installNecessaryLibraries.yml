@@ -48,38 +48,38 @@
       path: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
       state: directory
 
-#  - name: Downloading Cuda (10.2)
-#    ansible.builtin.get_url:
-#      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run
-#      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
-#      mode: "755"
+  - name: Downloading Cuda (10.2)
+    ansible.builtin.get_url:
+      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run
+      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
+      mode: "755"
 
-#  - name: Installing Cuda (10.2)
-#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.89_440.33.01_linux.run"
-#    args:
-#      executable: /bin/sh
+  - name: Installing Cuda (10.2)
+    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.89_440.33.01_linux.run"
+    args:
+      executable: /bin/sh
 
-#  - name: Downloading Cuda patch (1)
-#    ansible.builtin.get_url:
-#      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/patches/1/cuda_10.2.1_linux.run
-#      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
-#      mode: "755"
+  - name: Downloading Cuda patch (1)
+    ansible.builtin.get_url:
+      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/patches/1/cuda_10.2.1_linux.run
+      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
+      mode: "755"
 
-#  - name: Installing Cuda patch (1)
-#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.1_linux.run"
-#    args:
-#      executable: /bin/sh
+  - name: Installing Cuda patch (1)
+    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.1_linux.run"
+    args:
+      executable: /bin/sh
 
-#  - name: Downloading Cuda patch (2)
-#    ansible.builtin.get_url:
-#      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/patches/2/cuda_10.2.2_linux.run
-#      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
-#      mode: "755"
+  - name: Downloading Cuda patch (2)
+    ansible.builtin.get_url:
+      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/patches/2/cuda_10.2.2_linux.run
+      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
+      mode: "755"
 
-#  - name: Installing Cuda patch (2)
-#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.2_linux.run"
-#    args:
-#      executable: /bin/sh
+  - name: Installing Cuda patch (2)
+    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.2_linux.run"
+    args:
+      executable: /bin/sh
 
   - name: Installing PyTorch (latest stable, pip, Python, Cuda (10.2))
     ansible.builtin.pip:
@@ -101,12 +101,12 @@
 
   - name: Downloading OpenCV (base)
     ansible.builtin.unarchive:
-      url: https://github.com/opencv/opencv/archive/master.zip
+      src: https://github.com/opencv/opencv/archive/master.zip
       dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
   - name: Downloading OpenCV (contrib)
     ansible.builtin.unarchive:
-      url: https://github.com/opencv/opencv_contrib/archive/master.zip
+      src: https://github.com/opencv/opencv_contrib/archive/master.zip
       dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
   - name: Make OpenCV
