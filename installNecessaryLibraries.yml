@@ -74,20 +74,19 @@
       state: directory
 
 # Downloading and installing Cuda
-
   - name: Downloading Cuda (11.1)
     ansible.builtin.get_url:
       url: https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda_11.0.3_450.51.06_linux.run
       dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
       mode: "755"
 
-#  - name: Installing Cuda (11.1)
-#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_11.0.3_450.51.06_linux.run"
-#    args:
-#      executable: /bin/sh
+  - name: Installing Cuda (11.1)
+    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_11.0.3_450.51.06_linux.run"
+    args:
+      executable: /bin/sh
+    become: true
 
 # Installing PyTorch
-
   - name: Installing PyTorch (latest stable, pip, Python, Cuda (11.1))
     ansible.builtin.pip:
       executable: pip3
@@ -98,7 +97,6 @@
       extra_args: "-f https://download.pytorch.org/whl/torch_stable.html"
 
 # Downloading and compiling OpenCV
-
   - name: Downloading OpenCV (base)
     ansible.builtin.get_url:
       url: https://github.com/opencv/opencv/archive/4.4.0.zip
@@ -127,7 +125,6 @@
 #        OPENCV_EXTRA_MODULES_PATH: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
 # Downloading and installing StereoLabs ZED SDK
-
   - name: Downloading StereoLabs ZED SDK (Cuda 10.2)
     ansible.builtin.get_url:
       url: https://download.stereolabs.com/zedsdk/3.4/cu102/ubuntu18
