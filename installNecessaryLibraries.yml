@@ -42,7 +42,7 @@
       - python3-pip
       - python3-setuptools
       - vim
-      - virtualenvi
+      - virtualenv
     become: true
 
 # pip install [libraries listed below]
