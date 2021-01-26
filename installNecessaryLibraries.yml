@@ -116,7 +116,7 @@
 
   - name: Extracting OpenCV (contrib)
     ansible.builtin.unarchive:
-      src: "{{ansible_env.HOME}}/.dista/libraries/src/opencv/opencv_contrib-master.zip"
+      src: "{{ansible_env.HOME}}/.dista/libraries/src/opencv/opencv_contrib-4.4.0.zip"
       dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
 #  - name: Make OpenCV
