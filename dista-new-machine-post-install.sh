@@ -39,10 +39,6 @@ echo
 ansible-playbook -vvv installNecessaryLibraries.yml
 echo
 echo "# =========== SUMMARY OF CHANGES ==========="
-echo "# |  WARNING: Some steps may have been     |"
-echo "# |           skipped because they were    |"
-echo "# |           not necessary.               |"
-echo "# |                                        |"
 echo "# |  1. Fetched updates (apt update)       |"
 echo "# |                                        |"
 echo "# |  2. Applied updates (apt upgrade)      |"
