@@ -84,7 +84,6 @@
     ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_11.0.3_450.51.06_linux.run"
     args:
       executable: /bin/sh
-    become: true
 
 # Installing PyTorch
   - name: Installing PyTorch (latest stable, pip, Python, Cuda (11.1))
