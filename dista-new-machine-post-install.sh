@@ -19,13 +19,14 @@ echo
 echo "# ======= INSTALLING BASIC PACKAGES ========"
 echo "# |  ansible                               |"
 echo "# |  aptitude                              |"
+echo "# |  git                                   |"
 echo "# |  nano                                  |"
 echo "# |  python3                               |"
 echo "# |  python3-apt                           |"
 echo "# |  vim                                   |"
 echo "# =========================================="
 echo
-sudo apt install -y ansible aptitude nano python3 python3-apt vim
+sudo apt install -y ansible aptitude git nano python3 python3-apt vim
 echo
 echo "# ======= INSTALLING ANSIBLE MODULES ======="
 echo "# |  community.general                     |"
@@ -54,6 +55,7 @@ echo "# |     packages (apt install) :           |"
 echo "# |                                        |"
 echo "# |   - ansible                            |"
 echo "# |   - aptitude                           |"
+echo "# |   - git                                |"
 echo "# |   - nano                               |"
 echo "# |   - python3                            |"
 echo "# |   - python3-apt                        |"
