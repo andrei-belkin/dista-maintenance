@@ -1,24 +1,32 @@
+# Voir documentation : https://docs.ansible.com/ansible/latest/collections/index_module.html
+
 ---
 - hosts: localhost
   connection: local
 
   tasks:
+
+# apt update
   - name: Fetch updates
     ansible.builtin.apt:
       update_cache: yes
     become: true
 
+# apt dist-upgrade
   - name: Install updates
     ansible.builtin.apt:
       upgrade: dist
     become: true
 
+# apt autoclean
+# apt autoremove
   - name: Cleaning and autoremoving useless cache and packages
     ansible.builtin.apt:
       autoclean: yes
       autoremove: yes
     become: true
 
+# apt install [packages listed below]
   - name: Installing libraries via apt
     ansible.builtin.apt:
       pkg:
@@ -37,61 +45,17 @@
       - virtualenv
     become: true
 
+# pip install [libraries listed below]
   - name: Installing libraries via pip3
     ansible.builtin.pip:
       executable: pip3
       name:
         - numpy
-  
+
+# Creating hidden directories
   - name: Make hidden .dista/libraries/bin/cuda directory in the home directory
     ansible.builtin.file:
       path: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
-      state: directory
-
-  - name: Downloading Cuda (10.2)
-    ansible.builtin.get_url:
-      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run
-      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
-      mode: "755"
-
-#  - name: Installing Cuda (10.2)
-#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.89_440.33.01_linux.run"
-#    args:
-#      executable: /bin/sh
-
-  - name: Downloading Cuda patch (1)
-    ansible.builtin.get_url:
-      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/patches/1/cuda_10.2.1_linux.run
-      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
-      mode: "755"
-
-#  - name: Installing Cuda patch (1)
-#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.1_linux.run"
-#    args:
-#      executable: /bin/sh
-
-  - name: Downloading Cuda patch (2)
-    ansible.builtin.get_url:
-      url: https://developer.download.nvidia.com/compute/cuda/10.2/Prod/patches/2/cuda_10.2.2_linux.run
-      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
-      mode: "755"
-
-#  - name: Installing Cuda patch (2)
-#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_10.2.2_linux.run"
-#    args:
-#      executable: /bin/sh
-
-  - name: Installing PyTorch (latest stable, pip, Python, Cuda (10.2))
-    ansible.builtin.pip:
-      executable: pip3
-      name:
-        - torch
-        - torchvision
-        - torchaudio
-
-  - name: Make hidden .dista/libraries/src/opencv
-    ansible.builtin.file:
-      path: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
       state: directory
 
   - name: Make hidden .dista/libraries/bin/opencv
@@ -99,20 +63,56 @@
       path: "{{ansible_env.HOME}}/.dista/libraries/bin/opencv"
       state: directory
 
+  - name: Make hidden .dista/libraries/bin/zed
+    ansible.builtin.file:
+      path: "{{ansible_env.HOME}}/.dista/libraries/bin/zed"
+      state: directory
+
+  - name: Make hidden .dista/libraries/src/opencv
+    ansible.builtin.file:
+      path: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
+      state: directory
+
+# Downloading and installing Cuda
+
+  - name: Downloading Cuda (11.1)
+    ansible.builtin.get_url:
+      url: https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/cuda_11.0.3_450.51.06_linux.run
+      dest: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda"
+      mode: "755"
+
+#  - name: Installing Cuda (11.1)
+#    ansible.builtin.script: "{{ansible_env.HOME}}/.dista/libraries/bin/cuda/cuda_11.0.3_450.51.06_linux.run"
+#    args:
+#      executable: /bin/sh
+
+# Installing PyTorch
+
+- name: Installing PyTorch (latest stable, pip, Python, Cuda (11.1))
+    ansible.builtin.pip:
+      executable: pip3
+      name:
+        - torch==1.7.1+cu110
+        - torchvision==0.8.2+cu110
+        - torchaudio===0.7.2
+      extra_args: "-f https://download.pytorch.org/whl/torch_stable.html"
+
+# Downloading and compiling OpenCV
+
   - name: Downloading OpenCV (base)
     ansible.builtin.get_url:
-      url: https://github.com/opencv/opencv/archive/master.zip
-      dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
+      url: https://github.com/opencv/opencv/archive/4.4.0.zip
+      dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv/opencv-4.4.0.zip"
 
   - name: Extracting OpenCV (base)
     ansible.builtin.unarchive:
-      src: "{{ansible_env.HOME}}/.dista/libraries/src/opencv/opencv-master.zip"
+      src: "{{ansible_env.HOME}}/.dista/libraries/src/opencv/opencv-4.4.0.zip"
       dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
   - name: Downloading OpenCV (contrib)
     ansible.builtin.get_url:
-      url: https://github.com/opencv/opencv_contrib/archive/master.zip
-      dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
+      url: https://github.com/opencv/opencv_contrib/archive/4.4.0.zip
+      dest: "{{ansible_env.HOME}}/.dista/libraries/src/opencv/opencv_contrib-4.4.0.zip"
 
   - name: Extracting OpenCV (contrib)
     ansible.builtin.unarchive:
@@ -126,10 +126,7 @@
 #      params:
 #        OPENCV_EXTRA_MODULES_PATH: "{{ansible_env.HOME}}/.dista/libraries/src/opencv"
 
-  - name: Make hidden .dista/libraries/bin/zed
-    ansible.builtin.file:
-      path: "{{ansible_env.HOME}}/.dista/libraries/bin/zed"
-      state: directory
+# Downloading and installing StereoLabs ZED SDK
 
   - name: Downloading StereoLabs ZED SDK (Cuda 10.2)
     ansible.builtin.get_url:
